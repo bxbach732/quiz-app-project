@@ -1,0 +1,34 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if (it.noQuestion) { %>
+    <h3> There are no question for this topic yet. You can move back to the quiz topic list. <h3>
+    <form action="/quiz" method="GET">
+        <input type="submit" value="Quit topic List" />
+    </form>
+<% } else { %>
+    <h1>Question: </h1>
+    <h2> <%= it.questionText %></h2>
+
+    <h3>Current answers for the question</h3>
+
+    <% if (it.options && it.options.length > 0) { %>
+    <ul>
+    <% it.options.forEach(option => { %>
+    <li> 
+        <%= option.option_text %> 
+        <form action="/quiz/<%= it.topicId %>/questions/<%= it.questionId %>/options/<%= option.id %>" method="POST">
+        <input type="submit" value="Choose" />
+        </form>
+    </li>
+    <% }); %>
+    </ul>
+
+    <% } else { %>
+
+    <p>No answers given so far for this question. You can move to the next question</p>
+    <form action="/quiz/<%= it.topicId %>" method="GET">
+        <input type="submit" value="Next question" />
+    </form>
+
+    <% } %>
+<% } %>

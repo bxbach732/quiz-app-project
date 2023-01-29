@@ -1,0 +1,43 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1>Topic list</h1>
+
+<% if (it.topics && it.topics.length > 0) { %>
+
+<ul>
+<% it.topics.forEach(topic => { %>
+  <li> 
+    <a href="/topics/<%= topic.id %>"> <%= topic.name %></a> 
+    <% if (it.checkAdmin) { %>
+      <form action="/topics/<%= topic.id %>/delete" method="POST">
+        <input type="submit" value="Delete" />
+      </form>
+    <% } %>
+  </li>
+<% }); %>
+</ul>
+
+<% } else { %>
+
+<p>No topics so far!</p>
+
+<% } %>
+
+<% if (it.checkAdmin) { %>
+  <h2>Add a topic</h2>
+  <% if (it.validationErrors) { %>
+  <ul>
+      <% Object.keys(it.validationErrors).forEach((attribute) => { %>
+          <% Object.values(it.validationErrors[attribute]).forEach((err) => { %>
+              <li><%= err %></li>
+          <% }); %>
+      <% }); %>
+  </ul>
+  <% } %>
+  <form method="POST" action="/topics">
+    Topic name:<br/>
+    <input type="text" name="name" value="<%= it.name ? it.name : "" %>"/><br/>
+    <input type="submit" value="Add topic"/>
+  </form>
+<% } %>
+

@@ -1,0 +1,7 @@
+<% layout("./layouts/layout.eta") %>
+
+<h3> Incorrect! </h3>
+<h4> The correct option was <%= it.correctOption %></h4>
+<form action="/quiz/<%= it.topicId %>" method="GET">
+    <input type="submit" value="Next question" />
+</form>
