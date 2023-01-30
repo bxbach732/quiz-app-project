@@ -1,3 +1,5 @@
+# quizz-app-project
+
 The application is a simple implementation of a question creating an answering system built using deno, oak, and PostgreSQL. The application uses a three-tier architecture (client, server, and database) and a layered architecture with 4 layers (views, database, controllers, and services). The users can perform basic authenticating actions like registering and logging in. After being authenticated, the users can create/remove topics (if the user is an admin), create/remove questions and answer options. More than that, the users can answering the questions themselves by going to the quiz section. 
 
 It is recommended for the user to register for a ElephantSQL database and use its credentials for the .env file
